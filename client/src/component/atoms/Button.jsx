@@ -3,20 +3,22 @@ import React from 'react'
 const Button = ( { text, variation = "secondary", size = "small" } ) => {
     const btn_classes = {
         primary:
-            "bg-orange-50 py-3 px-8 text-[18px] text-absolute-white",
+            "bg-orange-50 py-3 px-8 text-absolute-white",
         secondary:
-            "bg-absolute-white py-4 px-6  text-[18px] text-gray-15 border border-white-95",
+            "bg-absolute-white py-4 px-6 text-gray-15 border border-white-95",
 
         link: "py-3 px-6 hover:bg-white-95",
 
-        icon: " w-[54px] h-[54px] p-4  xl:w-[74px] xl:h-[74px] xl:p-5 border border-white-95"
+        icon: "max-w-[54px] max-h-[54px] p-4 xl:max-w-[74px] xl:max-h-[74px] xl:p-5 border border-white-95 bg-white-99",
+
+        primary_gray:"bg-white-97 py-3 border border-white-95",
     };
 
     const btn_sizes = {
         small:
             "max-w-[117px] max-h-[55px]",
         medium:
-            "max-w-[195px] max-h-[63px]",
+            "max-w-fit max-h-[63px]",
         large:
             "w-auto max-h-[63px]",
     };
@@ -25,9 +27,9 @@ const Button = ( { text, variation = "secondary", size = "small" } ) => {
 
 
     return (
-        <button className={`${ btn_classes[ variation ] } ${ btn_sizes[ size ] } rounded-lg capitalize w-full h-full`}>
+        <button className={`${ btn_classes[ variation ] } ${ btn_sizes[ size ] } rounded-lg capitalize  flex items-center justify-center font-normal text-sm tracking-normal leading-[150%]`}>
             {variation === "icon" ? (
-                <img src="/assets/icons/link-icon.svg" alt={`${ variation }`} className='w-[26px] h-[26px] xl:w[34px] xl:h[34px]' />
+                <img src="/assets/icons/link-icon.svg" alt={`${ variation }`} className='w-[26px] h-[26px] xl:w-[34px] xl:h-[34px]' />
             ) : (
                 text
             )}

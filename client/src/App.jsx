@@ -1,6 +1,8 @@
 
 import './App.css'
-import Button from './component/atoms/Button'
+import MainNavbar from './component/molecules/MainNavbar'
+// import HeroBanner from './component/molecules/HeroBanner'
+import TopNavbar from './component/molecules/TopNavbar'
 
 function App() {
 
@@ -8,11 +10,9 @@ function App() {
   return (
     <>
       <div>
-        <h1 className="text-3xl font-bold underline">Hello</h1>
-        <Button text="sign up" variation="link" size='small' />
-        <Button text="login" variation="primary" size='small' />
-        <Button text="text" variation="secondary" size="small" />
-        <Button variation="icon" size="small" />
+        <TopNavbar />
+        <MainNavbar/>
+
       </div>
 
     </>
