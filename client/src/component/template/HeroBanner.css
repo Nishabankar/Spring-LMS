@@ -1,0 +1,8 @@
+.heading {
+  @apply relative;
+
+  &::before {
+    content: "";
+    @apply w-[39px] h-[43px] bg-[url('assets/icons/line-icon.svg')] bg-cover inline-block top-[-23%] -left-2  lg:top-[-42%] lg:-left-7 absolute;
+  }
+}

@@ -27,7 +27,7 @@ const Button = ( { text, variation = "secondary", size = "small" } ) => {
 
 
     return (
-        <button className={`${ btn_classes[ variation ] } ${ btn_sizes[ size ] } rounded-lg capitalize  flex items-center justify-center font-normal text-sm tracking-normal leading-[150%]`}>
+        <button className={`${ btn_classes[ variation ] } ${ btn_sizes[ size ] } rounded-lg capitalize  flex items-center justify-center font-medium`}>
             {variation === "icon" ? (
                 <img src="/assets/icons/link-icon.svg" alt={`${ variation }`} className='w-[26px] h-[26px] xl:w-[34px] xl:h-[34px]' />
             ) : (

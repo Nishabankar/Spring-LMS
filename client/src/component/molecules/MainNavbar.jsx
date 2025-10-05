@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import Button from '../atoms/Button'
 
 const MainNavbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false) // state to track menu
+  const [ menuOpen, setMenuOpen ] = useState( false ) // state to track menu
 
   return (
     <>
-      <div className="flex items-center justify-between py-3 px-3 lg:pt-4 lg:pb-5 lg:px-[60px] xl:pt-5 xl:pb-6 xl:px-[132px] border-b border-white-95">
+      <div className="flex items-center justify-between py-3  lg:pt-4 lg:pb-5  xl:pt-5 xl:pb-6  border-b border-white-95 max-w-[1595px] mx-auto">
         {/* Left: Logo */}
         <div className="flex items-center gap-12">
           <div>
@@ -21,11 +21,6 @@ const MainNavbar = () => {
 
           {/* Nav Links (desktop only) */}
           <div className="hidden lg:flex items-center">
-            {/* <Button text="Home" variation="link" size="small" /> */}
-            {/* <Button text="Courses" variation="link" size="small" /> */}
-            {/* <Button text="About Us" variation="link" size="small" />
-            <Button text="Pricing" variation="link" size="small" />
-            <Button text="Contact" variation="link" size="small" /> */}
             <a href="/" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Home</a>
             <a href="/courses" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Courses</a>
             <a href="/about" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">About Us</a>
@@ -44,7 +39,7 @@ const MainNavbar = () => {
 
           {/* Hamburger (mobile only) */}
           <div className="lg:hidden">
-            <button onClick={() => setMenuOpen(!menuOpen)}>
+            <button onClick={() => setMenuOpen( !menuOpen )}>
               <img
                 src="/assets/icons/hamburger-icon.svg"
                 alt="Menu"

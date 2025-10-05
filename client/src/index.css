@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply px-4 pt-10 lg:p-5 xl:px-[30px] xl:py-5 font-bevietnam bg-white-97;
+  @apply px-4 pt-10 lg:p-5 xl:px-20 xl:py-5 2xl:px-40 font-bevietnam bg-white-97;
 }

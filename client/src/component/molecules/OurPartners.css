@@ -1,0 +1,7 @@
+.image-container{
+    div {
+        &:last-child{
+            @apply border-none
+        }
+    }
+}
