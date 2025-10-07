@@ -61,8 +61,7 @@ const Courses = () => {
                 <HeadingText heading="Our Courses" subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in." />
                 <div className='card-container flex flex-col lg:flex-row gap-5 w-full flex-wrap justify-center items-center lg:items-stretch '>
                     {data.map( ( item, index ) => (
-
-                        <CoursesCards item={item} index={index} />
+                        <CoursesCards key={index} item={item} index={index} />
                     ) )}
                 </div>
             </div>

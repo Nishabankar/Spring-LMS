@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Button = ( { text, variation = "secondary", size = "small" } ) => {
+const Button = ( { text, variation = "secondary", size = "small" , className} ) => {
     const btn_classes = {
         primary:
             "bg-orange-50 py-3 px-8 text-absolute-white",
@@ -27,7 +27,7 @@ const Button = ( { text, variation = "secondary", size = "small" } ) => {
 
 
     return (
-        <button className={`${ btn_classes[ variation ] } ${ btn_sizes[ size ] } rounded-lg capitalize  flex items-center justify-center font-medium`}>
+        <button className={`${ btn_classes[ variation ] } ${ btn_sizes[ size ] } rounded-lg capitalize  flex items-center justify-center font-medium ${className}`}>
             {variation === "icon" ? (
                 <img src="/assets/icons/link-icon.svg" alt={`${ variation }`} className='w-[26px] h-[26px] xl:w-[34px] xl:h-[34px]' />
             ) : (

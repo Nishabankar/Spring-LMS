@@ -9,6 +9,7 @@ import TopNavbar from './component/molecules/TopNavbar'
 import Benifits from './component/template/Benifits'
 import Courses from './component/template/Courses'
 import HeroBanner from './component/template/HeroBanner'
+import Testimonial from './component/template/Testimonial'
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
         <OurPartners />
         <VideoPlayer/>
         <Benifits />
-        <Courses/>
+        <Courses />
+        <Testimonial />
 
 
       </div>
