@@ -11,8 +11,6 @@ const HeadingText = ({heading, subheading}) => {
           <div className='w-full max-w-max flex justify-end'>
               <Button text="View All" variation='secondary' size='medium'/>
           </div>
-
-
     </div>
   )
 }
