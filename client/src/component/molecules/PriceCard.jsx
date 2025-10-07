@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../atoms/Button'
 
-const PriceCard = ( { item } ) => {
+const PriceCard = ( { item, type } ) => {
 
   return (
     <>
@@ -10,7 +10,7 @@ const PriceCard = ( { item } ) => {
             <p>{item.name}</p>
           </div>
           <div>
-            <p className='text-sm font-normal text-gray-30'><span className='text-[50px] font-semibold text-gray-15'>{item.price}</span>/montly</p>
+          <p className='text-sm font-normal text-gray-30'><span className='text-[50px] font-semibold text-gray-15'>{item.price}</span>/{ type}</p>
           </div>
           <div className='flex w-full flex-col p-5 lg:px-[30px] gap-5 bg-absolute-white border border-white-95 rounded-[10px] rounded-b-none'>
             <h1 className='text-center font-medium text-lg text-gray-15'>Available Features</h1>
