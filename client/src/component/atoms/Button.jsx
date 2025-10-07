@@ -20,7 +20,7 @@ const Button = ( { text, variation = "secondary", size = "small" } ) => {
         medium:
             "max-w-fit max-h-[63px]",
         large:
-            "w-auto max-h-[63px]",
+            "w-full max-h-[63px]",
     };
 
 
