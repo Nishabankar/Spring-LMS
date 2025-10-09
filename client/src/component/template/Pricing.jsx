@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import HeadingText from '../molecules/HeadingText'
 import PriceCard from '../molecules/PriceCard'
-import HeadingWithTwoCTA from '../molecules/HeadingWithTwoCTA';
+
 import Button from '../atoms/Button';
 
 const Pricing = () => {
@@ -85,7 +84,7 @@ const Pricing = () => {
             <h3 className='text-[28px] font-semibold tracking-normal text-gray-15 lg:text-[38px] xl:text-5xl'>"Our Pricing"</h3>
             <p className='text-sm  font-normal tracking-normal text-gray-35 lg:text-base xl:text-lg'>Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in.</p>
           </div>
-          <div className='w-full max-w-max flex justify-end mx-auto lg:mx-0 bg-absolute-white p-3 rounded-lg'>
+          <div className='w-full max-w-max flex justify-end  lg:mx-0 bg-absolute-white p-3 rounded-lg'>
             <Button text="Monthly" variation={planType === "monthly" ? "primary" : "secondary"} size='medium' onClick={() => handleClick( "monthly" )} />
             <Button text="Yearly" variation={planType === "yearly" ? "primary" : "secondary"} size='medium' onClick={() => handleClick( "yearly" )} />
 
