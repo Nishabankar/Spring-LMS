@@ -1,36 +1,40 @@
-
-import './App.css'
-import VideoPlayer from './component/atoms/VideoPlayer'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Course from './pages/Course'
+import CourseDetails from './pages/CourseDetails'
+import AboutUs from './pages/AboutUs'
+import PricingPage from './pages/PricingPage'
+import Login from './pages/Login'
+import Signup from './pages/SignUp'
+import Footer from './component/template/Footer'
 import MainNavbar from './component/molecules/MainNavbar'
-import OurPartners from './component/molecules/OurPartners'
 import TopNavbar from './component/molecules/TopNavbar'
-import Benifits from './component/template/Benifits'
-import Courses from './component/template/Courses'
-import FAQ from './component/template/FAQ'
-import HeroBanner from './component/template/HeroBanner'
-import Pricing from './component/template/Pricing'
-import Testimonial from './component/template/Testimonial'
 
-function App() {
-
-
+function App () {
   return (
     <>
-      <div>
-        <TopNavbar />
-        <MainNavbar />
-        <HeroBanner />
-        <OurPartners />
-        <VideoPlayer/>
-        <Benifits />
-        <Courses />
-        <Testimonial />
-        <Pricing />
-        <FAQ/>
 
-      </div>
+      {/* Common Layout */}
+      <TopNavbar />
+      <MainNavbar />
 
+      {/* Page Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Course />} />
+        <Route path="/course/:id" element={<CourseDetails />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/contact" element={<Home/>} />
+      </Routes>
+
+      {/* Common Footer */}
+      <Footer />
     </>
+
   )
 }
 
