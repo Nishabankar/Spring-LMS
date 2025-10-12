@@ -7,6 +7,7 @@ import Courses from '../component/template/Courses'
 import Testimonial from '../component/template/Testimonial'
 import Pricing from '../component/template/Pricing'
 import FAQ from '../component/template/FAQ'
+import Heading from '../component/molecules/Heading'
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Testimonial />
       <Pricing />
       <FAQ />
+      
     </>
   )
 }

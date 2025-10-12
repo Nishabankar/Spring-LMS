@@ -1,0 +1,6 @@
+.curriculum-card{
+    &:last-child{
+        @apply border-none pb-0;
+    }
+    
+}
