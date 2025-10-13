@@ -10,7 +10,6 @@ import Signup from './pages/SignUp'
 import Footer from './component/template/Footer'
 import MainNavbar from './component/molecules/MainNavbar'
 import TopNavbar from './component/molecules/TopNavbar'
-import Heading from './component/molecules/Heading'
 
 function App () {
   return (
@@ -24,8 +23,8 @@ function App () {
       {/* Page Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-       <Route path="/courses" element={<Course />} />
-        <Route path="/course/:id" element={<CourseDetails />} />
+       <Route path="/courses" element={<Course/>} />
+        <Route path="/course/:id" element={<CourseDetails/>} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/login" element={<Login />} />

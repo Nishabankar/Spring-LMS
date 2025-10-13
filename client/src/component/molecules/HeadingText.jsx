@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../atoms/Button'
 
-const HeadingText = ( { heading, subheading, BtnText = "View All", isFAQ = false, mainHeadingClass = "", extraClass = "" } ) => {
+const HeadingText = ( { heading, subheading, BtnText = "View All", isFAQ = false, mainHeadingClass = "", extraClass = "" , className="" , onClick } ) => {
 
   const mainClass = isFAQ
     ? "mt-0 lg:max-w-[40%] lg:flex-col lg:mt-0 2xl:mt-0 lg:gap-10 2xl:gap-[50px] "
@@ -20,16 +20,14 @@ const HeadingText = ( { heading, subheading, BtnText = "View All", isFAQ = false
     : "";
 
 
-
-
   return (
     <div className={`flex flex-col  gap-5 lg:flex-row lg:items-end justify-between w-full max-w-[1595px] mx-auto mt-12 lg:mt-24 xl:mt-36  ${mainClass}${extraClass}`}>
       <div className='flex  flex-col items-start justify-start gap-1 w-full lg:max-w-[933px]'>
-        <h3 className={`text-[28px] font-semibold tracking-normal text-gray-15 lg:text-[38px] xl:text-5xl ${ headingClass } ${ mainHeadingClass }`}>{heading}</h3>
+        <h3 className={`text-[28px] font-semibold tracking-normal text-gray-15 lg:text-[38px] xl:text-5xl ${ headingClass } ${ mainHeadingClass } ${className}`}>{heading}</h3>
         <p className={`text-sm  font-normal tracking-normal text-gray-35 lg:text-base xl:text-lg ${ subheadingClass }`}>{subheading}</p>
       </div>
       <div className={`w-full max-w-max flex justify-end ${ buttonClass }`}>
-        <Button text={BtnText} variation='secondary' size='medium' />
+        <Button onClick={onClick} text={BtnText} variation='secondary' size='medium' />
       </div>
     </div>
   )

@@ -6,6 +6,7 @@ const Course = () => {
 
   const data = [
     {
+      id:1,
       description:
       {
         heading: "Web Design Fundamentals",
@@ -32,6 +33,7 @@ const Course = () => {
         ],
     },
     {
+      id:2,
       description:
       {
         heading: "UI/UX Design",
@@ -57,6 +59,7 @@ const Course = () => {
       ]
     },
     {
+      id:3,
       description:
       {
         heading: "Mobile App Development",
@@ -86,6 +89,7 @@ const Course = () => {
       ]
     },
     {
+      id:4,
       description:
       {
         heading: "Graphic Design for Beginners",
@@ -111,6 +115,7 @@ const Course = () => {
       ]
     },
     {
+      id:5,
       description:
       {
         heading: "Front-End Web Development",

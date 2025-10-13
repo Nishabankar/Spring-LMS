@@ -1,15 +1,19 @@
 import React from 'react'
 import HeadingText from '../molecules/HeadingText';
 import "./CourseWithThreeImage.css"
+import { useNavigate } from 'react-router-dom';
+
 
 const CourseWithThreeImage = ( { data } ) => {
+    const navigate = useNavigate();
+
     return (
         <>
             <div className='max-w-[1597px] mx-auto flex flex-col gap-5 lg:gap-10 2xl:gap-[50px]'>
                 {data.map( ( course, index ) => (
                     <div key={index} className='bg-absolute-white rounded-lg p-6 flex flex-col gap-10'>
                         <div className='flex flex-col gap-6 2xl:gap-[30px]'>
-                            <HeadingText heading={course.description.heading} subheading={course.description.subheading} mainHeadingClass="!text-lg lg:!text-xl 2xl:!text-2xl" extraClass="!mt-[0px] lg:!mt-[0px] 2xl:!mt-[0px]" />
+                            <HeadingText onClick={() => navigate( `/course/${ course.id }` )} heading={course.description.heading} subheading={course.description.subheading} mainHeadingClass="!text-lg lg:!text-xl 2xl:!text-2xl" extraClass="!mt-[0px] lg:!mt-[0px] 2xl:!mt-[0px]" />
                             <div className='flex flex-col gap-6 ' >
                                 <div className='flex flex-row justify-between gap-[10px] lg:gap-5 2xl:gap-[30px] w-full '>
                                     {course.image_path.map( ( img, index ) => (
