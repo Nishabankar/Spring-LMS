@@ -2,7 +2,6 @@ import React from 'react'
 import Heading from '../component/molecules/Heading'
 import AchivementCard from '../component/molecules/AchivementCard';
 import OurGoalsCard from '../component/molecules/OurGolasCard';
-import Button from '../component/atoms/Button';
 
 
 const AboutUs = () => {
@@ -31,8 +30,6 @@ const AboutUs = () => {
     },
 
   ];
-
-
   const OurGoals_data = [
     {
       icon_image: "assets/icons/Icon-5.svg",
@@ -57,7 +54,6 @@ const AboutUs = () => {
       description: "The digital landscape is constantly evolving, and we strive to stay at the forefront of industry trends. We regularly update our course content to ensure our students receive the latest knowledge and skills.",
     },
   ];
-
 
   return (
     <div>
@@ -98,10 +94,7 @@ const AboutUs = () => {
                                2xl:w-[180px] 2xl:h-[60px]'>
             <p className='text-base font-semibold text-absolute-white lg:text-lg'>Join Now</p>
           </button>
-
         </div>
-
-
       </div>
     </div>
 
