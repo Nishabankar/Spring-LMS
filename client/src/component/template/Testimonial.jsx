@@ -2,7 +2,7 @@ import React from 'react'
 import TestimonialCards from '../molecules/TestimonialCards';
 import HeadingText from '../molecules/HeadingText';
 
-const Testimonial = () => {
+const Testimonial = ( { showHeader = true } ) => {
     const data = [
         {
             description: "The web design course provided a solid foundation for me. The instructors were knowledgeable and supportive, and the interactive learning environment was engaging. I highly recommend it!",
@@ -29,7 +29,10 @@ const Testimonial = () => {
     return (
         <>
             <div className='benifit-container max-w-[1597px] mx-auto flex flex-col gap-10 lg:gap-[60px] xl:gap-20'>
-                <HeadingText heading="Our Testimonials" subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in." />
+                {showHeader && (
+                    <HeadingText heading="Our Testimonials" subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in." />
+                )}
+
                 <div className='card-container flex flex-col lg:flex-row gap-5 2xl:gap-[30px] w-full flex-wrap justify-center items-center lg:items-stretch '>
                     {data.map( ( item, index ) => (
                         <TestimonialCards key={index} item={item} index={index} />

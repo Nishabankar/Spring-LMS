@@ -93,8 +93,9 @@ const Pricing = ( { showHeader = true, noTopMargin = false } ) => {
 
 
           <div className='flex justify-center  lg:mx-0 bg-absolute-white p-3 rounded-lg max-w-[400px] mx-auto'>
-            <Button text="Monthly" variation={planType === "monthly" ? "primary" : "secondary"} size='medium' onClick={() => handleClick( "monthly" )} />
-            <Button text="Yearly" variation={planType === "yearly" ? "primary" : "secondary"} size='medium' onClick={() => handleClick( "yearly" )} />
+            <Button text="Monthly" variation={planType === "monthly" ? "primary" : "secondary"} size='medium' onClick={() => handleClick( "monthly" )} className={planType === "monthly" ? "" : "border-none"} />
+
+            <Button text="Yearly" variation={planType === "yearly" ? "primary" : "secondary"} size='medium' onClick={() => handleClick( "yearly" )} className={planType === "yearly" ? "" : "border-none"} />
 
           </div>
         </div>

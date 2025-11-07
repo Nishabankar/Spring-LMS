@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Button from '../atoms/Button'
+import { Link } from "react-router-dom";
+
 
 const MainNavbar = () => {
   const [ menuOpen, setMenuOpen ] = useState( false ) // state to track menu
@@ -34,7 +36,9 @@ const MainNavbar = () => {
           {/* Auth Buttons */}
           <div className="flex items-center">
             <Button text="Sign Up" variation="link" size="small" />
-            <Button text="Login" variation="primary" size="small" />
+            <Link to="/login">
+              <Button text="Login" variation="primary" size="small" />
+            </Link>
           </div>
 
           {/* Hamburger (mobile only) */}

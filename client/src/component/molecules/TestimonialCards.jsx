@@ -1,9 +1,9 @@
 import React from 'react'
 import Button from '../atoms/Button'
 
-const TestimonialCards = ( { item, index } ) => {
+const TestimonialCards = ( { item, index, className="" } ) => {
     return (
-        <div className='card-container bg-absolute-white w-full lg:max-w-[calc((100%-20px)/2)] 2xl:max-w-[calc((100%-30px)/2)] rounded-[10px] 2xl:rounded-xl'>
+        <div className={`card-container bg-absolute-white w-full lg:max-w-[calc((100%-20px)/2)] 2xl:max-w-[calc((100%-30px)/2)] rounded-[10px] 2xl:rounded-xl ${className}`}>
             <div className='p-[30px] lg:p-10 2xl:p-[50px]'>
                 <p className='text-sm lg:text-base 2xl:text-lg font-normal text-gray-30'>{item.description}</p>
             </div>

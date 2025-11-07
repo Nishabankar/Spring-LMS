@@ -5,7 +5,7 @@ const PriceCard = ( { item, type } ) => {
 
   return (
     <>
-        <div className='bg-white-99 border border-white-95 rounded-xl p-5 pt-[30px] flex flex-col items-center justify-center w-full lg:max-w-[((100%-30px)/2)] gap-[30px] lg:gap-[60px] 2xl:gap-[50px]'>
+        <div className='bg-white-99 border border-white-95 rounded-xl p-5 pt-[30px] flex flex-col items-center justify-center w-full lg:max-w-[((100%-30px)/2)] gap-[30px] lg:gap-[60px] 2xl:gap-[50px] '>
           <div className='py-2 text-center bg-orange-97 border border-orange-90 rounded-[4px] w-full'>
             <p>{item.name}</p>
           </div>

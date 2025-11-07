@@ -2,6 +2,7 @@ import React from 'react'
 import Heading from '../component/molecules/Heading'
 import AchivementCard from '../component/molecules/AchivementCard';
 import OurGoalsCard from '../component/molecules/OurGolasCard';
+import './AboutUs.css';
 
 
 const AboutUs = () => {
@@ -83,8 +84,8 @@ const AboutUs = () => {
           ) )}
         </div>
 
-        <div className='bg-absolute-white flex flex-col gap-10 lg:flex-row justify-between lg:items-center 2xl:flex-row 2xl:justify-between 2xl:items-center rounded-[10px] p-[30px]  lg:p-[60px] 2xl:rounded-xl 2xl:p-20   '>
-          <div className='flex flex-col gap-[10px] lg:gap-[14px] 2xl:gap-5'>
+        <div className='bg-absolute-white flex flex-col gap-10 lg:flex-row justify-between lg:items-center 2xl:flex-row 2xl:justify-between 2xl:items-center rounded-[10px] p-[30px]  lg:p-[60px] 2xl:rounded-xl 2xl:p-20 join-us'>
+          <div className='flex flex-col gap-[10px] lg:gap-[14px] 2xl:gap-5 z-10'>
             <h1 className='text-[28px] font-semibold leading-[120%] lg:text-[38px] 2xl:text-5xl'> <span className='text-orange-50'>Together</span>, let's shape the future of digital innovation</h1>
             <p className='text-sm font-normal text-gray-30 leading-[150%] lg:text-base 2xl:text-lg'>Join us on this exciting learning journey and unlock your potential in design and development.</p>
           </div>
