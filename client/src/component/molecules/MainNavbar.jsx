@@ -35,7 +35,9 @@ const MainNavbar = () => {
         <div className="flex items-center gap-5">
           {/* Auth Buttons */}
           <div className="flex items-center">
-            <Button text="Sign Up" variation="link" size="small" />
+            <Link to="/signup">
+              <Button text="Sign Up" variation="link" size="small" />
+            </Link>
             <Link to="/login">
               <Button text="Login" variation="primary" size="small" />
             </Link>
