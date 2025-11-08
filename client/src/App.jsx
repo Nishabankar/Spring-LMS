@@ -10,6 +10,7 @@ import Signup from './pages/SignUp'
 import Footer from './component/template/Footer'
 import MainNavbar from './component/molecules/MainNavbar'
 import TopNavbar from './component/molecules/TopNavbar'
+import Contact from './pages/Contact'
 
 function App () {
   return (
@@ -29,7 +30,7 @@ function App () {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/contact" element={<Home/>} />
+        <Route path="/contact" element={<Contact/>} />
       </Routes>
 
       {/* Common Footer */}
