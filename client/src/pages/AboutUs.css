@@ -1,1 +1,37 @@
+.join-us {
+  position: relative;
+  background-image: url('/assets/icons/bg-shape-about.svg');
+  background-repeat: no-repeat;
+  background-size: 35%;            /* ⬇️ smaller image */
+  background-position: right center;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
+/* ✅ Large desktop */
+@media (min-width: 1536px) {
+  .join-us {
+    background-size: 30%;          /* smaller and well-aligned on big screens */
+    background-position: 92% center;
+  }
+}
+
+/* ✅ Tablet */
+@media (max-width: 1024px) {
+  .join-us {
+    background-size: 60%;          /* slightly smaller on medium devices */
+    background-position: left bottom;
+  }
+}
+
+/* ✅ Mobile */
+@media (max-width: 640px) {
+  .join-us {
+    background-size: 40%;          /* smaller but still visible behind button */
+    background-position: bottom right;
+    background-color: #ffffff;
+    border: none;
+  }
+}
