@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
-import Button from '../atoms/Button'
+// MainNavbar.jsx
+import React, { useContext, useState } from "react";
+import Button from "../atoms/Button";
 import { Link } from "react-router-dom";
-
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const MainNavbar = () => {
-  const [ menuOpen, setMenuOpen ] = useState( false ) // state to track menu
+  const [menuOpen, setMenuOpen] = useState(false);
+  const { token, logout } = useContext(AuthContext); 
 
   return (
     <>
@@ -31,28 +33,33 @@ const MainNavbar = () => {
           </div>
         </div>
 
-        {/* Right: Auth buttons + Hamburger */}
-        <div className="flex items-center gap-5">
-          {/* Auth Buttons */}
-          <div className="flex items-center">
-            <Link to="/signup">
-              <Button text="Sign Up" variation="link" size="small" />
-            </Link>
-            <Link to="/login">
-              <Button text="Login" variation="primary" size="small" />
-            </Link>
+        {token ? (
+          <div className="flex items-center gap-4">
+            <span className="text-sm font-medium">User name</span>
+             <Button text="Logout" variation="primary" size="medium"  onClick={() => logout()} />
           </div>
+        ) : (
+          <div className="flex items-center gap-5">
+            <div className="flex items-center">
+              <Link to="/signup">
+                <Button text="Sign Up" variation="link" size="small" />
+              </Link>
+              <Link to="/login">
+                <Button text="Login" variation="primary" size="small" />
+              </Link>
+            </div>
+          </div>
+        )}
 
-          {/* Hamburger (mobile only) */}
-          <div className="lg:hidden">
-            <button onClick={() => setMenuOpen( !menuOpen )}>
-              <img
-                src="/assets/icons/hamburger-icon.svg"
-                alt="Menu"
-                className="w-6 h-6"
-              />
-            </button>
-          </div>
+        {/* Hamburger (mobile only) */}
+        <div className="lg:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)}>
+            <img
+              src="/assets/icons/hamburger-icon.svg"
+              alt="Menu"
+              className="w-6 h-6"
+            />
+          </button>
         </div>
       </div>
 
@@ -67,7 +74,7 @@ const MainNavbar = () => {
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default MainNavbar
+export default MainNavbar;

@@ -6,8 +6,64 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import Heading from "../component/molecules/Heading";
+import axios from "axios";
 
 const SignUp = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [errorDetails, setErrorDetails] = useState(null); 
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Handle form submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    setErrorDetails(null);
+
+    try {
+      const res = await axios.post("http://localhost:5000/api/users/register", formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      // success
+      setMessage(res.data?.message || "🎉 Signup successful! You can now log in.");
+      setFormData({ name: "", email: "", password: "" });
+      console.log("Signup success response:", res.data);
+    } catch (error) {
+      // Log and show error message
+      console.error("Signup error:", error);
+      // Prefer backend message if present
+      const backendMessage = error?.response?.data?.message || error?.response?.data?.error;
+      if (backendMessage) {
+        setMessage(backendMessage);
+      } else if (error.message) {
+        setMessage("Network error: " + error.message);
+      } else {
+        setMessage("Signup failed. Check console for details.");
+      }
+
+      // Save detailed info for debugging
+      setErrorDetails({
+        status: error?.response?.status,
+        responseData: error?.response?.data,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const data = [
     {
       description:
@@ -35,19 +91,19 @@ const SignUp = () => {
     },
   ];
 
-  const prevRef = useRef( null );
-  const nextRef = useRef( null );
-  const [ swiperInstance, setSwiperInstance ] = useState( null );
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
-  useEffect( () => {
-    if ( swiperInstance && prevRef.current && nextRef.current ) {
+  useEffect(() => {
+    if (swiperInstance && prevRef.current && nextRef.current) {
       swiperInstance.params.navigation.prevEl = prevRef.current;
       swiperInstance.params.navigation.nextEl = nextRef.current;
       swiperInstance.navigation.destroy();
       swiperInstance.navigation.init();
       swiperInstance.navigation.update();
     }
-  }, [ swiperInstance ] );
+  }, [swiperInstance]);
 
   return (
     <div className="w-full flex justify-center items-center bg-transparent max-w-[1597px] mx-auto mt-[50px]">
@@ -62,7 +118,9 @@ const SignUp = () => {
                 Create an account to unlock exclusive features.
               </p>
             </div>
-            <form className="flex flex-col gap-6">
+
+            {/* FORM START */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-gray-15 lg:text-base 2xl:text-lg">
                   Full Name
@@ -71,12 +129,14 @@ const SignUp = () => {
                   <input
                     type="text"
                     name="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     placeholder="Enter Your Name"
                     className="w-full text-sm font-normal text-gray-40 lg:text-base 2xl:text-lg outline-none bg-transparent"
+                    required
                   />
                 </div>
               </div>
-
 
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-gray-15 lg:text-base 2xl:text-lg">
@@ -86,11 +146,15 @@ const SignUp = () => {
                   <input
                     type="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="Enter Your Email"
                     className="w-full text-sm font-normal text-gray-40 lg:text-base 2xl:text-lg outline-none bg-transparent"
+                    required
                   />
                 </div>
               </div>
+
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-gray-15 lg:text-base 2xl:text-lg">
                   Password
@@ -99,22 +163,57 @@ const SignUp = () => {
                   <input
                     type="password"
                     name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     placeholder="Enter Your Password"
                     className="w-full text-sm font-normal text-gray-40 lg:text-base 2xl:text-lg outline-none bg-transparent"
+                    required
                   />
                   <button type="button">
                     <img src="assets/icons/Eye-icon.svg" alt="" />
                   </button>
                 </div>
               </div>
+
               <div className="flex items-center gap-2">
                 <img src="assets/icons/check-box-icon.svg" alt="" />
-                  <p className="text-sm font-normal text-gray-40 lg:text-base 2xl:text-lg">I agree with <span className="font-normal underline decoration-solid" >Terms of Use </span> and <span className="font-normal underline decoration-solid">Privacy Policy</span>  </p>
+                <p className="text-sm font-normal text-gray-40 lg:text-base 2xl:text-lg">
+                  I agree with{" "}
+                  <span className="font-normal underline decoration-solid">Terms of Use</span>{" "}
+                  and{" "}
+                  <span className="font-normal underline decoration-solid">Privacy Policy</span>
+                </p>
               </div>
-              <Button text="Sign Up" variation="primary" size="large" />
+
+              {/* <-- Use native submit button so form actually submits reliably */}
+              <button
+                type="submit"
+                disabled={loading}
+                className={`w-full rounded-lg py-4 text-white font-medium ${
+                  loading ? "opacity-60 cursor-not-allowed bg-gray-400" : "bg-indigo-600 hover:bg-indigo-700"
+                }`}
+              >
+                {loading ? "Creating Account..." : "Sign Up"}
+              </button>
+
+              {/* MESSAGE AREA */}
+              {message && (
+                <p className={`text-center text-sm ${message.startsWith("🎉") ? "text-green-600" : "text-red-500"}`}>
+                  {message}
+                </p>
+              )}
+
+              {/* developer debug info (only show when errorDetails present) */}
+              {errorDetails && (
+                <pre className="text-xs text-left bg-gray-100 p-3 rounded mt-2 overflow-auto">
+                  {JSON.stringify(errorDetails, null, 2)}
+                </pre>
+              )}
+
               <div className="flex justify-center">
                 <img src="assets/icons/OR-icon.svg" alt="" />
               </div>
+
               <Button
                 text="Login with Google"
                 variation="primary_gray"
@@ -127,25 +226,28 @@ const SignUp = () => {
               <div className="flex justify-center items-center gap-1">
                 <p className="text-sm font-normal text-gray-15 lg:text-base 2xl:text-lg">
                   Don’t have an account?{" "}
-                  <span className="font-medium underline decoration-solid">
-                    Login
-                  </span>
+                  <span className="font-medium underline decoration-solid">Login</span>
                 </p>
                 <img src="assets/icons/arrow-icon.svg" alt="" />
               </div>
             </form>
+            {/* FORM END */}
           </div>
         </div>
 
-        <div className="w-full lg:max-w-[calc(((100%-80px)/2)+60px)]  2xl:max-w-[calc(((100%-100px)/2)+85px)] flex flex-col items-start justify-center gap-10 lg:gap-[60px] 2xl:gap-20">
-
-          <Heading heading="Students Testimonials" subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in." className="!flex !flex-col !items-start !justify-start !gap-1 lg:!gap-1 2xl:!gap-[6px]"
-
-            showUnderline={false} showPadding={false} showMargin={false} />
-
-          <div className="flex flex-col gap-5 lg:gap-6 2xl:gap-[30px] w-full ">
+        {/* TESTIMONIALS */}
+        <div className="w-full lg:max-w-[calc(((100%-80px)/2)+60px)] 2xl:max-w-[calc(((100%-100px)/2)+85px)] flex flex-col items-start justify-center gap-10 lg:gap-[60px] 2xl:gap-20">
+          <Heading
+            heading="Students Testimonials"
+            subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et."
+            className="!flex !flex-col !items-start !justify-start !gap-1 lg:!gap-1 2xl:!gap-[6px]"
+            showUnderline={false}
+            showPadding={false}
+            showMargin={false}
+          />
+          <div className="flex flex-col gap-5 lg:gap-6 2xl:gap-[30px] w-full">
             <Swiper
-              modules={[ Navigation, Autoplay ]}
+              modules={[Navigation, Autoplay]}
               spaceBetween={30}
               slidesPerView={1}
               autoplay={{ delay: 3000 }}
@@ -155,7 +257,7 @@ const SignUp = () => {
                 prevEl: prevRef.current,
                 nextEl: nextRef.current,
               }}
-              onInit={( swiper ) => {
+              onInit={(swiper) => {
                 swiper.params.navigation.prevEl = prevRef.current;
                 swiper.params.navigation.nextEl = nextRef.current;
                 swiper.navigation.init();
@@ -163,15 +265,15 @@ const SignUp = () => {
               }}
               className="w-full xl:max-w-full 2xl:max-w-full"
             >
-              {data.map( ( item, index ) => (
+              {data.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div className="flex justify-center items-center">
                     <div className="w-full">
-                      <TestimonialCards item={item} index={index} className="lg:max-w-full 2xl:max-w-full" />
+                      <TestimonialCards item={item} index={index} className="lg:max-w-full 2xl:!max-w-full" />
                     </div>
                   </div>
                 </SwiperSlide>
-              ) )}
+              ))}
             </Swiper>
             <div className="flex justify-center lg:justify-end gap-4 w-full">
               <button
