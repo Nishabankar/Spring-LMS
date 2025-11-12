@@ -3,6 +3,8 @@ import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './configs/mongodb.js'
 import userRoutes from './routes/userRoutes.js'
+import courseRoutes from "./routes/courseRoutes.js";
+
 
 
 // Intialize Express
@@ -18,7 +20,9 @@ app.use(express.json())
 
 // Routes
 app.get( '/', ( req, res ) => res.send( "API Working" ) )
-app.use("/api/users", userRoutes);
+app.use( "/api/users", userRoutes );
+app.use("/api/courses", courseRoutes);
+
 
 
 
