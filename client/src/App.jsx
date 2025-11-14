@@ -11,6 +11,10 @@ import Footer from './component/template/Footer'
 import MainNavbar from './component/molecules/MainNavbar'
 import TopNavbar from './component/molecules/TopNavbar'
 import Contact from './pages/Contact'
+import AddCourse from './pages/AddCourse'
+import Courses from './pages/Courses'
+import EditCourse from './pages/EditCourse'
+
 
 function App () {
   return (
@@ -30,7 +34,14 @@ function App () {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/contact" element={<Contact/>} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/add-course" element={<AddCourse />} />
+        <Route path="/my-courses" element={<Courses />} />
+        <Route path="/edit-course/:id" element={<EditCourse />} />
+
+
+
+
       </Routes>
 
       {/* Common Footer */}

@@ -1,15 +1,11 @@
 import mongoose from "mongoose";
 
 const lessonSchema = new mongoose.Schema({
-  lessonId: {
+  title: {
     type: String,
     required: true,
   },
-  lessonTitle: {
-    type: String,
-    required: true,
-  },
-  lessonDuration: {
+  duration: {
     type: String,
     required: true,
   },
@@ -57,5 +53,4 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Course = mongoose.model("Course", courseSchema);
-export default Course;
+export default mongoose.model("Course", courseSchema);
