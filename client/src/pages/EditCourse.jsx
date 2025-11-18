@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-const EditCourse = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
+const EditCourse = ({id, onUpdated}) => {
+  // const navigate = useNavigate();
   const [courseData, setCourseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -116,7 +114,7 @@ const EditCourse = () => {
       );
 
       alert("Course updated successfully!");
-      navigate("/my-courses");
+    if (onUpdated) onUpdated();   // 🔥 go back to course list inside dashboard
     } catch (err) {
       console.error("Update error:", err);
       alert("Error updating course!");

@@ -120,7 +120,7 @@ const AddCourse = () => {
       );
 
       // ⭐ Redirect to Courses Page
-       navigate("/my-courses");
+     navigate("/dashboard/my-courses");
 
     } catch (err) {
       console.log(err);

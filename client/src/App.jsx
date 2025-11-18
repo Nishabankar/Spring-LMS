@@ -14,6 +14,7 @@ import Contact from './pages/Contact'
 import AddCourse from './pages/AddCourse'
 import Courses from './pages/Courses'
 import EditCourse from './pages/EditCourse'
+import Dashboard from './pages/Dashboard'
 
 
 function App () {
@@ -35,12 +36,7 @@ function App () {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/add-course" element={<AddCourse />} />
-        <Route path="/my-courses" element={<Courses />} />
-        <Route path="/edit-course/:id" element={<EditCourse />} />
-
-
-
+        <Route path="/dashboard" element={<Dashboard />} />
 
       </Routes>
 

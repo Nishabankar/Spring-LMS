@@ -4,6 +4,10 @@ import 'dotenv/config'
 import connectDB from './configs/mongodb.js'
 import userRoutes from './routes/userRoutes.js'
 import courseRoutes from "./routes/courseRoutes.js";
+import benifitRoutes from "./routes/benefitRoutes.js";
+import testimonialRoutes from "./routes/testimonialRoutes.js";
+
+
 
 
 
@@ -15,13 +19,26 @@ await connectDB()
 
 //Middleware
 app.use( cors() )
-app.use(express.json())
+app.use( express.json() )
+
+app.use((req, res, next) => {
+  if (typeof req.url === "string") {
+    req.url = req.url.replace(/%0A/g, "").trim(); // remove encoded newline and trim
+  }
+  next();
+});
 
 
 // Routes
 app.get( '/', ( req, res ) => res.send( "API Working" ) )
 app.use( "/api/users", userRoutes );
-app.use("/api/courses", courseRoutes);
+app.use( "/api/courses", courseRoutes );
+app.use( "/api/benefits", benifitRoutes );
+app.use("/api/testimonials", testimonialRoutes);   // ✅ Correct here
+
+
+
+
 
 
 

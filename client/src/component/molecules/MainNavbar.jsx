@@ -7,7 +7,6 @@ import { AuthContext } from "../../context/AuthContext.jsx";
 const MainNavbar = () => {
   const [ menuOpen, setMenuOpen ] = useState( false );
   const { token, logout } = useContext( AuthContext );
-  const [ sidebarOpen, setSidebarOpen ] = useState( false );
 
   return (
     <>
@@ -31,15 +30,7 @@ const MainNavbar = () => {
             <a href="/about" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">About Us</a>
             <a href="/pricing" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Pricing</a>
             <a href="/contact" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Contact</a>
-
-            {/* Dashboard opens sidebar */}
-            <a
-              href="#"
-              onClick={() => setSidebarOpen( true )}
-              className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal"
-            >
-              Dashboard
-            </a>
+            <a href="/dashboard" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Dashboard</a>
           </div>
         </div>
 
@@ -85,39 +76,6 @@ const MainNavbar = () => {
         </div>
       )}
 
-      {/* -------------------------------------------------- */}
-      {/* LEFT SIDEBAR (SLIDER BAR) */}
-      {/* -------------------------------------------------- */}
-      {sidebarOpen && (
-        <>
-          {/* Background Overlay */}
-          <div
-            onClick={() => setSidebarOpen( false )}
-            className="fixed inset-0 bg-black/40 z-40"
-          ></div>
-
-          {/* Sidebar Panel */}
-          <div className="fixed top-0 left-0 h-full w-64 bg-gray-70 shadow-lg z-50 p-5 transition-all duration-300">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-lg font-semibold">Dashboard Menu</h2>
-              <button onClick={() => setSidebarOpen( false )}>
-                <img src="/assets/icons/close-icon.svg" alt="Close" className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <Link to="/my-courses" className="text-gray-800 hover:text-orange-500">
-                My Courses
-              </Link>
-
-              <Link to="/add-course" className="text-gray-800 hover:text-orange-500">
-                Add Course
-              </Link>
-            </div>
-          </div>
-
-        </>
-      )}
     </>
   );
 };

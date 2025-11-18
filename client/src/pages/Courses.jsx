@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Courses = () => {
+const Courses = ({ onEdit }) => {
+
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -56,7 +57,6 @@ const Courses = () => {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-6">My Courses</h1>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map((course) => (
           <div
@@ -105,7 +105,7 @@ const Courses = () => {
               </a>
 
               <a
-                href={`/edit-course/${course._id}`}
+                onClick={() => onEdit(course._id)}
                 className="px-3 py-2 bg-green-600 text-white rounded text-sm"
               >
                 Edit
