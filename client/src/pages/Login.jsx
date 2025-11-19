@@ -25,31 +25,41 @@ const Login = () => {
   };
 
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  useContext( AuthContext );
 
 
 
  const handleLogin = async (e) => {
-  e.preventDefault();
-  setMessage("");
+    e.preventDefault();
+    setMessage("");
 
-     try {
-      const res = await axios.post("http://localhost:5000/api/users/login", formData);
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/users/login",
+        formData
+      );
 
-      // use context login which sets localStorage and state
-      login(res.data.token);
+      const user = res.data.user; // backend user object
+      const token = res.data.token;
+
+      // ⭐ Save token + user
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
 
       setMessage("Login successful!");
-      // navigate immediately (or after short delay)
-      setTimeout(() => {
-        navigate("/");
-      }, 500);
+
+      // ⭐ Redirect based on role
+      if (user.isAdmin === true) {
+        navigate("/dashboard");
+      } else {
+        navigate("/student-dashboard");
+      }
     } catch (err) {
       console.error(err.response?.data || err.message);
-      setMessage(" Invalid email or password!");
+      setMessage("Invalid email or password!");
     }
+  };
 
-};
 
   const data = [
     {

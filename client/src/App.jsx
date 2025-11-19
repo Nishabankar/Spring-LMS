@@ -15,6 +15,8 @@ import AddCourse from './pages/AddCourse'
 import Courses from './pages/Courses'
 import EditCourse from './pages/EditCourse'
 import Dashboard from './pages/Dashboard'
+import StudentDashboard from "./pages/StudentDashboard";
+
 
 
 function App () {
@@ -37,6 +39,9 @@ function App () {
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/student-dashboard" element={<StudentDashboard />} />
+
+
 
       </Routes>
 
