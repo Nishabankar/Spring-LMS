@@ -6,7 +6,7 @@ const AddTestimonial = ({ onAdded }) => {
     user_name: "",
     description: "",
     role: "",
-    user_image: "", // will store Cloudinary secure_url
+    user_image: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ const AddTestimonial = ({ onAdded }) => {
   const [message, setMessage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
-  // CLOUDINARY UPLOAD (same style as AddCourse)
+  // CLOUDINARY UPLOAD
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -26,7 +26,6 @@ const AddTestimonial = ({ onAdded }) => {
       form.append("file", file);
       form.append("upload_preset", "spring-lms");
 
-      // SAME URL as AddCourse
       const uploadRes = await axios.post(
         `https://api.cloudinary.com/v1_1/db2g3c5w6/image/upload`,
         form
@@ -48,7 +47,6 @@ const AddTestimonial = ({ onAdded }) => {
     setUploading(false);
   };
 
-  // REMOVE IMAGE
   const removeImage = () => {
     setFormData((prev) => ({
       ...prev,
@@ -57,7 +55,7 @@ const AddTestimonial = ({ onAdded }) => {
     setImagePreview(null);
   };
 
-  // INPUT CHANGE HANDLER
+  // INPUT CHANGE
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -68,8 +66,8 @@ const AddTestimonial = ({ onAdded }) => {
   // SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setMessage("");
+    setLoading(true);
 
     if (!formData.user_image) {
       alert("Please upload a user image");
@@ -90,34 +88,38 @@ const AddTestimonial = ({ onAdded }) => {
   };
 
   return (
-    <div className="bg-white shadow p-6 rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Add Testimonial</h2>
+    <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Add Testimonial</h2>
 
-      {message && <p className="mb-4 text-green-600">{message}</p>}
+      {message && (
+        <p className="text-green-600 font-medium mb-4">{message}</p>
+      )}
 
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-5" onSubmit={handleSubmit}>
 
         {/* USER NAME */}
         <div>
-          <label className="block font-medium">User Name</label>
+          <label className="font-semibold text-gray-700">
+            User Name
+          </label>
           <input
             type="text"
             name="user_name"
             value={formData.user_name}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
             required
           />
         </div>
 
         {/* DESCRIPTION */}
         <div>
-          <label className="block font-medium">Description</label>
+          <label className="font-semibold text-gray-700">Description</label>
           <textarea
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
             rows="4"
             required
           ></textarea>
@@ -125,58 +127,61 @@ const AddTestimonial = ({ onAdded }) => {
 
         {/* ROLE */}
         <div>
-          <label className="block font-medium">Role</label>
+          <label className="font-semibold text-gray-700">Role</label>
           <input
             type="text"
             name="role"
             value={formData.role}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
-            placeholder="Student, Developer, etc."
+            placeholder="Student, Developer, Engineer, etc."
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
           />
         </div>
 
-        {/* IMAGE UPLOAD (same style as AddCourse) */}
+        {/* IMAGE UPLOAD */}
         <div>
-          <label className="block font-medium">Upload User Image</label>
+          <label className="font-semibold text-gray-700">Upload User Image</label>
+
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="mb-2"
+            className="mt-1"
           />
 
           {uploading && (
-            <p className="text-blue-500 text-sm">Uploading image...</p>
+            <p className="text-blue-500 text-sm mt-1">Uploading image...</p>
           )}
 
           {/* PREVIEW */}
           {imagePreview && (
-            <div className="relative w-max mt-2">
+            <div className="relative inline-block mt-3">
               <img
                 src={imagePreview}
-                className="w-24 h-24 rounded-full object-cover"
+                className="w-24 h-24 rounded-full object-cover border shadow"
                 alt="Preview"
               />
               <button
                 type="button"
-                className="absolute top-0 right-0 bg-red-600 text-white px-1 text-xs rounded"
+                className="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full shadow"
                 onClick={removeImage}
               >
-                X
+                ✕
               </button>
             </div>
           )}
         </div>
 
-        {/* SUBMIT */}
+        {/* SUBMIT BUTTON */}
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 text-white py-2 px-4 rounded"
+          className="bg-green-600 text-white px-6 py-3 rounded-lg w-full
+                     font-semibold text-lg shadow hover:bg-green-700 transition-all"
         >
           {loading ? "Adding..." : "Add Testimonial"}
         </button>
+
       </form>
     </div>
   );

@@ -14,7 +14,6 @@ const EditTestimonial = ({ id, onUpdated }) => {
   const [imagePreview, setImagePreview] = useState(null);
   const [message, setMessage] = useState("");
 
-  // Fetch testimonial by ID
   const fetchTestimonial = async () => {
     try {
       const res = await axios.get(`http://localhost:5000/api/testimonials/${id}`);
@@ -24,7 +23,7 @@ const EditTestimonial = ({ id, onUpdated }) => {
         role: res.data.role,
         user_image: res.data.user_image,
       });
-      setImagePreview(res.data.user_image); // preview existing image
+      setImagePreview(res.data.user_image);
     } catch (error) {
       console.error("Error loading testimonial:", error);
     }
@@ -35,7 +34,6 @@ const EditTestimonial = ({ id, onUpdated }) => {
     if (id) fetchTestimonial();
   }, [id]);
 
-  // CLOUDINARY UPLOAD (same as AddCourse + AddTestimonial)
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -68,7 +66,6 @@ const EditTestimonial = ({ id, onUpdated }) => {
     setUploading(false);
   };
 
-  // Remove image
   const removeImage = () => {
     setFormData((prev) => ({
       ...prev,
@@ -77,7 +74,6 @@ const EditTestimonial = ({ id, onUpdated }) => {
     setImagePreview(null);
   };
 
-  // Handle text changes
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -85,7 +81,6 @@ const EditTestimonial = ({ id, onUpdated }) => {
     });
   };
 
-  // Update testimonial
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -103,7 +98,7 @@ const EditTestimonial = ({ id, onUpdated }) => {
       );
 
       setMessage("Testimonial updated successfully!");
-      onUpdated(); // go back to My Testimonials
+      onUpdated();
     } catch (error) {
       console.error("Update failed:", error);
       setMessage("Failed to update testimonial.");
@@ -113,90 +108,93 @@ const EditTestimonial = ({ id, onUpdated }) => {
   if (loading) return <p>Loading testimonial...</p>;
 
   return (
-    <div className="bg-white shadow p-6 rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Edit Testimonial</h2>
+    <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-md border border-gray-200">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Edit Testimonial</h2>
 
-      {message && <p className="text-green-600 mb-3">{message}</p>}
+      {message && <p className="text-green-600 font-medium mb-4">{message}</p>}
 
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-5" onSubmit={handleSubmit}>
 
         {/* USER NAME */}
         <div>
-          <label className="block font-medium">User Name</label>
+          <label className="font-semibold text-gray-700">User Name</label>
           <input
             type="text"
             name="user_name"
-            className="w-full border p-2 rounded"
             value={formData.user_name}
             onChange={handleChange}
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
             required
           />
         </div>
 
         {/* DESCRIPTION */}
         <div>
-          <label className="block font-medium">Description</label>
+          <label className="font-semibold text-gray-700">Description</label>
           <textarea
             name="description"
-            className="w-full border p-2 rounded"
-            rows="4"
             value={formData.description}
             onChange={handleChange}
+            rows="4"
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
             required
           ></textarea>
         </div>
 
         {/* ROLE */}
         <div>
-          <label className="block font-medium">Role</label>
+          <label className="font-semibold text-gray-700">Role</label>
           <input
             type="text"
             name="role"
-            className="w-full border p-2 rounded"
             value={formData.role}
             onChange={handleChange}
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
+            placeholder="Student, Developer, etc."
           />
         </div>
 
         {/* IMAGE UPLOAD */}
         <div>
-          <label className="block font-medium">User Image</label>
+          <label className="font-semibold text-gray-700">User Image</label>
+
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="mb-2"
+            className="mt-1"
           />
 
-          {uploading && (
-            <p className="text-blue-500 text-sm">Uploading image...</p>
-          )}
+          {uploading && <p className="text-blue-500 text-sm">Uploading image...</p>}
 
           {/* PREVIEW */}
           {imagePreview && (
-            <div className="relative w-max mt-2">
+            <div className="relative inline-block mt-3">
               <img
                 src={imagePreview}
-                className="w-24 h-24 rounded-full object-cover"
-                alt="preview"
+                className="w-24 h-24 rounded-full object-cover border shadow"
+                alt="Preview"
               />
               <button
                 type="button"
+                className="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 py-0.5 rounded-full shadow"
                 onClick={removeImage}
-                className="absolute top-0 right-0 bg-red-600 text-white px-1 rounded text-xs"
               >
-                X
+                ✕
               </button>
             </div>
           )}
         </div>
 
+        {/* SUBMIT BUTTON */}
         <button
           type="submit"
-          className="bg-blue-600 text-white py-2 px-4 rounded"
+          className="bg-green-600 text-white px-6 py-3 rounded-lg w-full
+                     font-semibold text-lg shadow hover:bg-green-700 transition-all"
         >
           Update Testimonial
         </button>
+
       </form>
     </div>
   );

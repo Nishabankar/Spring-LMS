@@ -6,6 +6,10 @@ import userRoutes from './routes/userRoutes.js'
 import courseRoutes from "./routes/courseRoutes.js";
 import benifitRoutes from "./routes/benefitRoutes.js";
 import testimonialRoutes from "./routes/testimonialRoutes.js";
+import pricingRoutes from "./routes/pricingRoutes.js";
+import faqRoutes from "./routes/faqRoutes.js";
+
+
 
 
 
@@ -34,7 +38,11 @@ app.get( '/', ( req, res ) => res.send( "API Working" ) )
 app.use( "/api/users", userRoutes );
 app.use( "/api/courses", courseRoutes );
 app.use( "/api/benefits", benifitRoutes );
-app.use("/api/testimonials", testimonialRoutes);   // ✅ Correct here
+app.use( "/api/testimonials", testimonialRoutes );
+app.use( "/api/pricing", pricingRoutes );
+app.use("/api/faqs", faqRoutes);
+
+
 
 
 

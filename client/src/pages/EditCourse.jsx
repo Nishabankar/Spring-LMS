@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 
-const EditCourse = ({id, onUpdated}) => {
-  // const navigate = useNavigate();
+const EditCourse = ({ id, onUpdated }) => {
   const [courseData, setCourseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  // FETCH COURSE
   useEffect(() => {
     const fetchCourse = async () => {
       try {
@@ -19,21 +16,18 @@ const EditCourse = ({id, onUpdated}) => {
       }
       setLoading(false);
     };
-
     fetchCourse();
   }, [id]);
 
-  if (loading || !courseData) return <p className="p-6">Loading...</p>;
+  if (loading || !courseData)
+    return <p className="p-6 text-lg text-center font-semibold">Loading...</p>;
 
-  // CHANGE MAIN INPUTS
   const handleChange = (e) => {
     setCourseData({ ...courseData, [e.target.name]: e.target.value });
   };
 
-  // IMAGE UPLOAD
   const handleImageUpload = async (e) => {
     const files = e.target.files;
-
     if (files.length + courseData.images.length > 3) {
       alert("Max 3 images allowed!");
       return;
@@ -56,13 +50,11 @@ const EditCourse = ({id, onUpdated}) => {
     }
   };
 
-  // DELETE IMAGE
   const removeImage = (index) => {
     const updated = courseData.images.filter((_, i) => i !== index);
     setCourseData({ ...courseData, images: updated });
   };
 
-  // CHAPTER FUNCTIONS
   const addChapter = () => {
     setCourseData({
       ...courseData,
@@ -70,27 +62,22 @@ const EditCourse = ({id, onUpdated}) => {
     });
   };
 
-  const handleChapterChange = (i, value) => {
+  const removeChapter = (index) => {
+    setCourseData({
+      ...courseData,
+      chapters: courseData.chapters.filter((_, i) => i !== index),
+    });
+  };
+
+  const handleChapterChange = (index, value) => {
     const updated = [...courseData.chapters];
-    updated[i].title = value;
+    updated[index].title = value;
     setCourseData({ ...courseData, chapters: updated });
   };
 
-  const removeChapter = (i) => {
-    const updated = courseData.chapters.filter((_, idx) => idx !== i);
-    setCourseData({ ...courseData, chapters: updated });
-  };
-
-  // LESSON FUNCTIONS
-  const addLesson = (chapterIndex) => {
+  const addLesson = (cIndex) => {
     const updated = [...courseData.chapters];
-    updated[chapterIndex].lessons.push({ title: "", duration: "" });
-    setCourseData({ ...courseData, chapters: updated });
-  };
-
-  const handleLessonChange = (cIndex, lIndex, field, value) => {
-    const updated = [...courseData.chapters];
-    updated[cIndex].lessons[lIndex][field] = value;
+    updated[cIndex].lessons.push({ title: "", duration: "" });
     setCourseData({ ...courseData, chapters: updated });
   };
 
@@ -102,7 +89,12 @@ const EditCourse = ({id, onUpdated}) => {
     setCourseData({ ...courseData, chapters: updated });
   };
 
-  // SUBMIT UPDATE
+  const handleLessonChange = (cIndex, lIndex, field, val) => {
+    const updated = [...courseData.chapters];
+    updated[cIndex].lessons[lIndex][field] = val;
+    setCourseData({ ...courseData, chapters: updated });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
@@ -114,20 +106,23 @@ const EditCourse = ({id, onUpdated}) => {
       );
 
       alert("Course updated successfully!");
-    if (onUpdated) onUpdated();   // 🔥 go back to course list inside dashboard
+      if (onUpdated) onUpdated();
     } catch (err) {
-      console.error("Update error:", err);
-      alert("Error updating course!");
+      console.error(err);
+      alert("Update failed!");
     }
 
     setSaving(false);
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Edit Course</h1>
+    <div className="max-w-5xl mx-auto bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <h1 className="text-3xl font-bold mb-8 text-gray-800 tracking-wide">
+        Edit Course
+      </h1>
+
+      <form onSubmit={handleSubmit} className="space-y-8">
 
         {/* Title */}
         <div>
@@ -136,7 +131,7 @@ const EditCourse = ({id, onUpdated}) => {
             name="title"
             value={courseData.title}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-3 border rounded-lg mt-1"
           />
         </div>
 
@@ -146,8 +141,9 @@ const EditCourse = ({id, onUpdated}) => {
           <textarea
             name="description"
             value={courseData.description}
+            rows="4"
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-3 border rounded-lg mt-1"
           ></textarea>
         </div>
 
@@ -158,7 +154,7 @@ const EditCourse = ({id, onUpdated}) => {
             name="duration"
             value={courseData.duration}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-3 border rounded-lg mt-1"
           />
         </div>
 
@@ -169,7 +165,7 @@ const EditCourse = ({id, onUpdated}) => {
             name="level"
             value={courseData.level}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-3 border rounded-lg mt-1 bg-white"
           >
             <option>Beginner</option>
             <option>Intermediate</option>
@@ -184,27 +180,33 @@ const EditCourse = ({id, onUpdated}) => {
             name="author"
             value={courseData.author}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-3 border rounded-lg mt-1"
           />
         </div>
 
-        {/* IMAGES */}
+        {/* Images */}
         <div>
           <label className="font-semibold">Course Images (Max 3)</label>
+
           <input
             type="file"
             accept="image/*"
             multiple
             onChange={handleImageUpload}
+            className="mt-2"
           />
 
-          <div className="flex gap-4 mt-3">
-            {courseData.images.map((img, i) => (
-              <div key={i} className="relative">
-                <img src={img} className="w-24 h-24 rounded object-cover" />
+          <div className="flex gap-4 mt-4">
+            {courseData.images.map((img, index) => (
+              <div key={index} className="relative">
+                <img
+                  src={img}
+                  className="w-24 h-24 object-cover rounded-lg shadow"
+                />
                 <button
-                  className="absolute top-0 right-0 bg-red-500 text-white px-1 text-xs"
-                  onClick={() => removeImage(i)}
+                  type="button"
+                  className="absolute top-0 right-0 bg-red-600 text-white text-xs px-1 rounded"
+                  onClick={() => removeImage(index)}
                 >
                   X
                 </button>
@@ -213,52 +215,44 @@ const EditCourse = ({id, onUpdated}) => {
           </div>
         </div>
 
-        {/* CHAPTERS */}
+        {/* Chapters */}
         <div>
-          <h2 className="text-xl font-semibold">Chapters</h2>
+          <h2 className="text-xl font-bold text-gray-800">Chapters</h2>
 
-          {courseData.chapters.map((chapter, cIndex) => (
-            <div
-              key={cIndex}
-              className="border rounded p-4 bg-gray-50 mt-3"
-            >
-              <div className="flex justify-between">
-                <h3 className="font-semibold">Chapter {cIndex + 1}</h3>
+          {courseData.chapters.map((ch, cIndex) => (
+            <div key={cIndex} className="bg-gray-50 border rounded-xl p-5 mt-4 shadow-inner">
+
+              <div className="flex justify-between items-center">
+                <h3 className="font-semibold text-gray-800">Chapter {cIndex + 1}</h3>
                 <button
                   type="button"
-                  className="text-red-600"
+                  className="text-red-600 font-medium"
                   onClick={() => removeChapter(cIndex)}
                 >
-                  Remove Chapter
+                  Remove
                 </button>
               </div>
 
               <input
-                value={chapter.title}
-                onChange={(e) =>
-                  handleChapterChange(cIndex, e.target.value)
-                }
-                className="w-full p-2 border rounded mt-2"
+                value={ch.title}
+                onChange={(e) => handleChapterChange(cIndex, e.target.value)}
                 placeholder="Chapter Title"
+                className="w-full p-3 border rounded-lg mt-3"
               />
 
               {/* LESSONS */}
-              <div className="mt-3">
-                <h4 className="font-medium">Lessons</h4>
+              <div className="mt-4">
+                <h4 className="font-semibold text-gray-800">Lessons</h4>
 
-                {chapter.lessons.map((lesson, lIndex) => (
-                  <div
-                    key={lIndex}
-                    className="p-3 bg-white border rounded mt-2"
-                  >
+                {ch.lessons.map((lesson, lIndex) => (
+                  <div key={lIndex} className="bg-white p-4 border rounded-lg mt-3 shadow-sm">
+
                     <div className="flex justify-between">
-                      <span>Lesson {lIndex + 1}</span>
+                      <p className="font-medium">Lesson {lIndex + 1}</p>
                       <button
                         type="button"
                         className="text-red-600 text-sm"
-                        onClick={() =>
-                          removeLesson(cIndex, lIndex)
-                        }
+                        onClick={() => removeLesson(cIndex, lIndex)}
                       >
                         Remove
                       </button>
@@ -267,29 +261,19 @@ const EditCourse = ({id, onUpdated}) => {
                     <input
                       value={lesson.title}
                       onChange={(e) =>
-                        handleLessonChange(
-                          cIndex,
-                          lIndex,
-                          "title",
-                          e.target.value
-                        )
+                        handleLessonChange(cIndex, lIndex, "title", e.target.value)
                       }
-                      className="w-full p-2 border rounded mt-2"
                       placeholder="Lesson Title"
+                      className="w-full p-2 border rounded mt-3"
                     />
 
                     <input
                       value={lesson.duration}
                       onChange={(e) =>
-                        handleLessonChange(
-                          cIndex,
-                          lIndex,
-                          "duration",
-                          e.target.value
-                        )
+                        handleLessonChange(cIndex, lIndex, "duration", e.target.value)
                       }
-                      className="w-full p-2 border rounded mt-2"
                       placeholder="Lesson Duration"
+                      className="w-full p-2 border rounded mt-3"
                     />
                   </div>
                 ))}
@@ -297,7 +281,7 @@ const EditCourse = ({id, onUpdated}) => {
                 <button
                   type="button"
                   onClick={() => addLesson(cIndex)}
-                  className="px-3 py-1 bg-blue-500 text-white rounded mt-2"
+                  className="mt-3 px-4 py-2 bg-blue-600 text-white rounded-lg shadow"
                 >
                   + Add Lesson
                 </button>
@@ -308,7 +292,7 @@ const EditCourse = ({id, onUpdated}) => {
           <button
             type="button"
             onClick={addChapter}
-            className="px-4 py-2 bg-green-600 text-white rounded mt-3"
+            className="px-4 py-2 bg-green-600 text-white rounded-lg shadow mt-4"
           >
             + Add Chapter
           </button>
@@ -318,10 +302,11 @@ const EditCourse = ({id, onUpdated}) => {
         <button
           type="submit"
           disabled={saving}
-          className="w-full py-3 bg-blue-600 text-white rounded"
+          className="w-full py-3 bg-blue-600 text-white rounded-xl shadow text-lg font-semibold hover:bg-blue-700 transition-all"
         >
           {saving ? "Updating..." : "Update Course"}
         </button>
+
       </form>
     </div>
   );

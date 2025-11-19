@@ -34,46 +34,58 @@ const MyTestimonials = ({ onEdit }) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">My Testimonials</h2>
+      <h2 className="text-3xl font-bold mb-8 text-gray-800">My Testimonials</h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {testimonials.map((item) => (
           <div
             key={item._id}
-            className="bg-white shadow p-4 rounded-lg border"
+            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all border border-gray-200 overflow-hidden"
           >
-            <h3 className="text-xl font-semibold">{item.user_name}</h3>
-            <p className="text-gray-700 mt-1">{item.description}</p>
+            {/* Top Header Strip */}
+            <div className="h-2 bg-gradient-to-r from-purple-500 to-purple-700"></div>
 
-            {item.user_image && (
-              <img
-                src={item.user_image}
-                alt="User"
-                className="w-20 h-20 rounded-full mt-3 object-cover"
-              />
-            )}
+            {/* Inner Content */}
+            <div className="p-6">
 
-            <p className="text-sm text-gray-500 mt-2">{item.role}</p>
+              {/* Image + User Info */}
+              <div className="flex items-center gap-4">
+                <img
+                  src={item.user_image}
+                  alt={item.user_name}
+                  className="w-16 h-16 rounded-full object-cover border shadow"
+                />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{item.user_name}</h3>
+                  <p className="text-sm text-gray-500">{item.role}</p>
+                </div>
+              </div>
 
-            <div className="flex gap-3 mt-4">
-              <button
-                onClick={() => onEdit(item._id)}
-                className="bg-yellow-500 text-white py-1 px-3 rounded"
-              >
-                Edit
-              </button>
+              {/* Description */}
+              <p className="text-gray-700 mt-4 leading-relaxed text-sm">
+                {item.description}
+              </p>
 
-              <button
-                onClick={() => deleteTestimonial(item._id)}
-                className="bg-red-600 text-white py-1 px-3 rounded"
-              >
-                Delete
-              </button>
+              {/* Buttons */}
+              <div className="flex gap-4 mt-6">
+                <button
+                  onClick={() => onEdit(item._id)}
+                  className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg font-medium shadow-sm transition-all"
+                >
+                  ✏️ Edit
+                </button>
+
+                <button
+                  onClick={() => deleteTestimonial(item._id)}
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-medium shadow-sm transition-all"
+                >
+                  🗑 Delete
+                </button>
+              </div>
+
             </div>
           </div>
         ))}
-
       </div>
     </div>
   );
