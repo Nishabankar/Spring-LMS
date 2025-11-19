@@ -32,6 +32,7 @@ const EditTestimonial = ({ id, onUpdated }) => {
 
   useEffect(() => {
     if (id) fetchTestimonial();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleImageUpload = async (e) => {

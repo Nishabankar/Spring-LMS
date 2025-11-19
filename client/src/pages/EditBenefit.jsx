@@ -18,6 +18,7 @@ const EditBenefit = ({ id, onUpdated }) => {
 
   useEffect(() => {
     if (id) fetchBenefit();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const updateBenefit = async (e) => {
