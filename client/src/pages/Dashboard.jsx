@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // COURSE FILES
 import AddCourse from "./AddCourse";
-import Courses from "./Courses";
+import Courses from "./MyCourses";
 import EditCourse from "./EditCourse";
 
 // BENEFIT FILES
@@ -26,19 +26,19 @@ import MyFAQ from "./MyFAQ";
 import EditFAQ from "./EditFAQ";
 
 const Dashboard = () => {
-  const [activePage, setActivePage] = useState("courses");
+  const [ activePage, setActivePage ] = useState( "courses" );
 
-  const [editCourseId, setEditCourseId] = useState(null);
-  const [editBenefitId, setEditBenefitId] = useState(null);
-  const [editTestimonialId, setEditTestimonialId] = useState(null);
-  const [editPricingId, setEditPricingId] = useState(null);
-  const [editFAQId, setEditFAQId] = useState(null); // NEW
+  const [ editCourseId, setEditCourseId ] = useState( null );
+  const [ editBenefitId, setEditBenefitId ] = useState( null );
+  const [ editTestimonialId, setEditTestimonialId ] = useState( null );
+  const [ editPricingId, setEditPricingId ] = useState( null );
+  const [ editFAQId, setEditFAQId ] = useState( null ); // NEW
 
-  const goToCourses = () => setActivePage("courses");
-  const goToBenefits = () => setActivePage("benefits");
-  const goToTestimonials = () => setActivePage("testimonials");
-  const goToPricing = () => setActivePage("pricing");
-  const goToFAQ = () => setActivePage("faq"); // NEW
+  const goToCourses = () => setActivePage( "courses" );
+  const goToBenefits = () => setActivePage( "benefits" );
+  const goToTestimonials = () => setActivePage( "testimonials" );
+  const goToPricing = () => setActivePage( "pricing" );
+  const goToFAQ = () => setActivePage( "faq" ); // NEW
 
   return (
     <div className="flex min-h-screen">
@@ -48,58 +48,58 @@ const Dashboard = () => {
 
         {/* Course Buttons */}
         <button
-          onClick={() => setActivePage("add-course")}
+          onClick={() => setActivePage( "add-course" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
           ➕ Add Course
         </button>
         <button
-          onClick={() => setActivePage("courses")}
+          onClick={() => setActivePage( "courses" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
-          📚 My Courses
+          📚 All Courses
         </button>
 
         {/* Benefit Buttons */}
         <button
-          onClick={() => setActivePage("add-benefit")}
+          onClick={() => setActivePage( "add-benefit" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
           ⭐ Add Benefit
         </button>
         <button
-          onClick={() => setActivePage("benefits")}
+          onClick={() => setActivePage( "benefits" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
-          📝 My Benefits
+          📝 All Benefits
         </button>
 
         {/* Testimonial Buttons */}
         <button
-          onClick={() => setActivePage("add-testimonial")}
+          onClick={() => setActivePage( "add-testimonial" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
           💬 Add Testimonial
         </button>
         <button
-          onClick={() => setActivePage("testimonials")}
+          onClick={() => setActivePage( "testimonials" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
-          👥 My Testimonials
+          👥 All Testimonials
         </button>
 
         {/* Pricing Buttons */}
         <button
-          onClick={() => setActivePage("add-pricing")}
+          onClick={() => setActivePage( "add-pricing" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
           💲 Add Pricing
         </button>
         <button
-          onClick={() => setActivePage("pricing")}
+          onClick={() => setActivePage( "pricing" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
-          📊 My Pricing
+          📊 All Pricing
         </button>
 
         {/* ----------------------------------- */}
@@ -107,17 +107,17 @@ const Dashboard = () => {
         {/* ----------------------------------- */}
 
         <button
-          onClick={() => setActivePage("add-faq")}
+          onClick={() => setActivePage( "add-faq" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
           ❓ Add FAQ
         </button>
 
         <button
-          onClick={() => setActivePage("faq")}
+          onClick={() => setActivePage( "faq" )}
           className="block w-full py-2 px-3 bg-white-90 rounded text-left"
         >
-          📘 My FAQ
+          📘 All FAQ
         </button>
       </div>
 
@@ -127,9 +127,9 @@ const Dashboard = () => {
         {activePage === "add-course" && <AddCourse />}
         {activePage === "courses" && (
           <Courses
-            onEdit={(id) => {
-              setEditCourseId(id);
-              setActivePage("edit-course");
+            onEdit={( id ) => {
+              setEditCourseId( id );
+              setActivePage( "edit-course" );
             }}
           />
         )}
@@ -141,9 +141,9 @@ const Dashboard = () => {
         {activePage === "add-benefit" && <AddBenefits onAdded={goToBenefits} />}
         {activePage === "benefits" && (
           <MyBenefits
-            onEdit={(id) => {
-              setEditBenefitId(id);
-              setActivePage("edit-benefit");
+            onEdit={( id ) => {
+              setEditBenefitId( id );
+              setActivePage( "edit-benefit" );
             }}
           />
         )}
@@ -157,9 +157,9 @@ const Dashboard = () => {
         )}
         {activePage === "testimonials" && (
           <MyTestimonials
-            onEdit={(id) => {
-              setEditTestimonialId(id);
-              setActivePage("edit-testimonial");
+            onEdit={( id ) => {
+              setEditTestimonialId( id );
+              setActivePage( "edit-testimonial" );
             }}
           />
         )}
@@ -171,9 +171,9 @@ const Dashboard = () => {
         {activePage === "add-pricing" && <AddPricing onAdded={goToPricing} />}
         {activePage === "pricing" && (
           <MyPricing
-            onEdit={(id) => {
-              setEditPricingId(id);
-              setActivePage("edit-pricing");
+            onEdit={( id ) => {
+              setEditPricingId( id );
+              setActivePage( "edit-pricing" );
             }}
           />
         )}
@@ -186,9 +186,9 @@ const Dashboard = () => {
 
         {activePage === "faq" && (
           <MyFAQ
-            onEdit={(id) => {
-              setEditFAQId(id);
-              setActivePage("edit-faq");
+            onEdit={( id ) => {
+              setEditFAQId( id );
+              setActivePage( "edit-faq" );
             }}
           />
         )}

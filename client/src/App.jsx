@@ -12,7 +12,7 @@ import MainNavbar from './component/molecules/MainNavbar'
 import TopNavbar from './component/molecules/TopNavbar'
 import Contact from './pages/Contact'
 import AddCourse from './pages/AddCourse'
-import Courses from './pages/Courses'
+import Courses from './pages/MyCourses'
 import EditCourse from './pages/EditCourse'
 import Dashboard from './pages/Dashboard'
 import StudentDashboard from "./pages/StudentDashboard";
@@ -31,8 +31,8 @@ function App () {
       {/* Page Routes */}
       <Routes>
         <Route path="/" element={<Home />} />
-       <Route path="/courses" element={<Course/>} />
-        <Route path="/course/:id" element={<CourseDetails/>} />
+        <Route path="/courses" element={<Course />} />
+        <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/login" element={<Login />} />
