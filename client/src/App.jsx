@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import Home from './pages/Home'
 import Course from './pages/Course'
 import CourseDetails from './pages/CourseDetails'
@@ -11,22 +12,19 @@ import Footer from './component/template/Footer'
 import MainNavbar from './component/molecules/MainNavbar'
 import TopNavbar from './component/molecules/TopNavbar'
 import Contact from './pages/Contact'
-import AddCourse from './pages/AddCourse'
-import Courses from './pages/MyCourses'
-import EditCourse from './pages/EditCourse'
+
 import Dashboard from './pages/Dashboard'
-import StudentDashboard from "./pages/StudentDashboard";
+import StudentDashboard from "./pages/StudentDashboard"
 
-
+// ✅ Import PrivateRoute
+import PrivateRoute from "./PrivateRoute"
 
 function App () {
   return (
     <>
-
       {/* Common Layout */}
       <TopNavbar />
       <MainNavbar />
-      {/* <Heading/> */}
 
       {/* Page Routes */}
       <Routes>
@@ -38,17 +36,30 @@ function App () {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/student-dashboard" element={<StudentDashboard />} />
 
+        {/* ✅ Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
 
-
+        <Route
+          path="/student-dashboard"
+          element={
+            <PrivateRoute>
+              <StudentDashboard />
+            </PrivateRoute>
+          }
+        />
       </Routes>
 
-      {/* Common Footer */}
+      {/* Footer */}
       <Footer />
     </>
-
   )
 }
 

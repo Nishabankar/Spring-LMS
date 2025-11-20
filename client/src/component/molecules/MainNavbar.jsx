@@ -30,7 +30,15 @@ const MainNavbar = () => {
             <a href="/about" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">About Us</a>
             <a href="/pricing" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Pricing</a>
             <a href="/contact" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Contact</a>
-            <a href="/dashboard" className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal">Dashboard</a>
+            {token && (
+              <a
+                href="/dashboard"
+                className="text-gray-15 hover:bg-white-95 px-3 py-2 rounded-md text-sm font-normal"
+              >
+                Dashboard
+              </a>
+            )}
+
           </div>
         </div>
 
@@ -72,7 +80,7 @@ const MainNavbar = () => {
           <Button text="About Us" variation="link" size="small" />
           <Button text="Pricing" variation="link" size="small" />
           <Button text="Contact" variation="link" size="small" />
-          <Button text="Dashboard" variation="link" size="small" />
+          {token && <Button text="Dashboard" variation="link" size="small" />}
         </div>
       )}
 

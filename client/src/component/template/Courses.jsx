@@ -1,69 +1,82 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HeadingText from "../molecules/HeadingText";
 import CoursesCards from "../molecules/CoursesCards";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+
 
 const Courses = () => {
-  const navigate = useNavigate();
+const navigate = useNavigate();
 
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/api/courses");
-
-        const apiCourses = Array.isArray(res.data)
-          ? res.data
-          : res.data.courses || [];
-
-        setCourses(apiCourses);
-      } catch (err) {
-        console.error("Error fetching courses for home:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCourses();
-  }, []);
-
-  const homeCourses = courses.slice(0, 10);
-
-  const mapApiCourseToCard = (course) => ({
-    image_path: course.images?.[0] || "assets/images/default-course.png",
-    duration: course.duration || "",
-    course_for: course.level || "",
-    author: course.author ? `By ${course.author}` : "",
-    title: course.title || "",
-    description: course.description || "",
-  });
+  const data = [
+    {
+      image_path: "assets/images/Image-1.png",
+      duration: "4 Weeks",
+      course_for: "Beginner",
+      author: "By John Smith",
+      title: "Web Design Fundamentals",
+      description:
+        "Learn the fundamentals of web design, including HTML, CSS, and responsive design principles. Develop the skills to create visually appealing and user-friendly websites.",
+    },
+    {
+      image_path: "assets/images/Image-2.png",
+      duration: "6 Weeks",
+      course_for: "Intermediate",
+      author: "By Emily Johnson",
+      title: "UI/UX Design",
+      description:
+        "Master the art of creating intuitive user interfaces (UI) and enhancing user experiences (UX). Learn design principles, wireframing, prototyping, and usability testing techniques.",
+    },
+    {
+      image_path: "assets/images/Image-4.png",
+      duration: "8 Weeks",
+      course_for: "Intermediate",
+      author: "By David Brown",
+      title: "Mobile App Development",
+      description:
+        "Dive into the world of mobile app development. Learn to build native iOS and Android applications using industry-leading frameworks like Swift and Kotlin.",
+    },
+    {
+      image_path: "assets/images/Image-5.png",
+      duration: "10 Weeks",
+      course_for: "Beginner",
+      author: "By Sarah Thompson",
+      title: "Graphic Design for Beginners",
+      description:
+        "Discover the fundamentals of graphic design, including typography, color theory, layout design, and image manipulation techniques. Create visually stunning designs for print and digital media.",
+    },
+    {
+      image_path: "assets/images/Image-6.png",
+      duration: "10 Weeks",
+      course_for: "Intermediate",
+      author: "By Michael Adams",
+      title: "Front-End Web Development",
+      description:
+        "Become proficient in front-end web development. Learn HTML, CSS, JavaScript, and popular frameworks like Bootstrap and React. Build interactive and responsive websites.",
+    },
+    {
+      image_path: "assets/images/Image-3.png",
+      duration: "6 Weeks",
+      course_for: "Advance",
+      author: "By Jennifer Wilson",
+      title: "Advanced JavaScript",
+      description:
+        "Take your JavaScript skills to the next level. Explore advanced concepts like closures, prototypes, asynchronous programming, and ES6 features. Build complex applications with confidence.",
+    },
+  ];
 
   return (
     <>
       <div className="benifit-container max-w-[1597px] mx-auto flex flex-col gap-10 lg:gap-[60px] xl:gap-20">
         <HeadingText
-          onClick={() => navigate(`/courses`)}
+          onClick={() => navigate( `/courses`)}
           heading="Our Courses"
-          subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et..."
+          subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in."
         />
 
-        <div className="card-container flex flex-col lg:flex-row gap-5 w-full flex-wrap justify-center items-center lg:items-stretch ">
-          {loading ? (
-            <p>Loading courses...</p>
-          ) : homeCourses.length > 0 ? (
-            homeCourses.map((course, index) => (
-              <CoursesCards
-                key={course._id || index}
-                item={mapApiCourseToCard(course)}
-                index={index}
-              />
-            ))
-          ) : (
-            <p>No courses found.</p>
-          )}
+        <div className="card-container flex flex-col lg:flex-row gap-5 w-full flex-wrap justify-center items-center lg:items-stretch">
+          {data.map((item, index) => (
+            <CoursesCards key={index} item={item} index={index} />
+          ))}
         </div>
       </div>
     </>
