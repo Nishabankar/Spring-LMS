@@ -207,7 +207,7 @@ const Login = () => {
         <div className="w-full lg:max-w-[calc(((100%-80px)/2)+60px)]  2xl:max-w-[calc(((100%-100px)/2)+85px)] flex flex-col items-start justify-center gap-10 lg:gap-[60px] 2xl:gap-20">
           <Heading
             heading="Students Testimonials"
-            subheading="Lorem ipsum dolor sit amet consectetur..."
+            subheading="Lorem ipsum dolor sit amet consectetur. Tempus tincidunt etiam eget elit id imperdiet et. Cras eu sit dignissim lorem nibh et. Ac cum eget habitasse in velit fringilla feugiat senectus in."
             className="!flex !flex-col !items-start !justify-start !gap-1 lg:!gap-1 2xl:!gap-[6px]"
             showUnderline={false}
             showPadding={false}
@@ -241,7 +241,7 @@ const Login = () => {
                       <TestimonialCards
                         item={item}
                         index={index}
-                        className="lg:max-w-full 2xl:max-w-full"
+                        className="lg:max-w-full 2xl:!max-w-full"
                       />
                     </div>
                   </div>

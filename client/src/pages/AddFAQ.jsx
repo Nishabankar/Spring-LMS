@@ -6,6 +6,8 @@ const AddFAQ = ({ onAdded }) => {
     question: "",
     answer: "",
     icon_path: "assets/icons/plus-icon.svg",
+    buttonText: "",
+    link: "#"
   });
 
   const handleChange = (e) => {
@@ -24,6 +26,8 @@ const AddFAQ = ({ onAdded }) => {
       question: "",
       answer: "",
       icon_path: "assets/icons/plus-icon.svg",
+      buttonText: "",
+      link: "#"
     });
   };
 
@@ -42,7 +46,7 @@ const AddFAQ = ({ onAdded }) => {
             placeholder="Enter FAQ question"
             value={formData.question}
             onChange={handleChange}
-            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
+            className="border p-3 rounded-lg w-full mt-1"
           />
         </div>
 
@@ -55,7 +59,7 @@ const AddFAQ = ({ onAdded }) => {
             value={formData.answer}
             onChange={handleChange}
             rows="4"
-            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
+            className="border p-3 rounded-lg w-full mt-1"
           ></textarea>
         </div>
 
@@ -65,10 +69,35 @@ const AddFAQ = ({ onAdded }) => {
           <input
             type="text"
             name="icon_path"
-            placeholder="assets/icons/plus-icon.svg"
             value={formData.icon_path}
             onChange={handleChange}
-            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
+            className="border p-3 rounded-lg w-full mt-1"
+          />
+        </div>
+
+        {/* Button Text */}
+        <div>
+          <label className="font-semibold text-gray-700">Button Text</label>
+          <input
+            type="text"
+            name="buttonText"
+            placeholder="Enter button text"
+            value={formData.buttonText}
+            onChange={handleChange}
+            className="border p-3 rounded-lg w-full mt-1"
+          />
+        </div>
+
+        {/* Link */}
+        <div>
+          <label className="font-semibold text-gray-700">Link</label>
+          <input
+            type="text"
+            name="link"
+            placeholder="#"
+            value={formData.link}
+            onChange={handleChange}
+            className="border p-3 rounded-lg w-full mt-1"
           />
         </div>
 
@@ -76,8 +105,7 @@ const AddFAQ = ({ onAdded }) => {
         <div className="pt-4">
           <button
             type="submit"
-            className="bg-green-600 text-white px-6 py-3 rounded-lg w-full
-                       font-semibold text-lg shadow hover:bg-green-700 transition-all"
+            className="bg-green-600 text-white px-6 py-3 rounded-lg w-full font-semibold text-lg shadow hover:bg-green-700 transition-all"
           >
             Save FAQ
           </button>

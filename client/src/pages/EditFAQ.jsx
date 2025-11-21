@@ -6,6 +6,8 @@ const EditFAQ = ({ id, onUpdated }) => {
     question: "",
     answer: "",
     icon_path: "assets/icons/plus-icon.svg",
+    buttonText: "",
+    link: "#"
   });
 
   const [loading, setLoading] = useState(true);
@@ -76,7 +78,33 @@ const EditFAQ = ({ id, onUpdated }) => {
           />
         </div>
 
-        {/* Submit Button */}
+        {/* Button Text */}
+        <div>
+          <label className="font-semibold text-gray-700">Button Text</label>
+          <input
+            type="text"
+            name="buttonText"
+            value={formData.buttonText}
+            onChange={handleChange}
+            placeholder="Enter button text"
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
+        </div>
+
+        {/* Link */}
+        <div>
+          <label className="font-semibold text-gray-700">Link</label>
+          <input
+            type="text"
+            name="link"
+            value={formData.link}
+            onChange={handleChange}
+            placeholder="#"
+            className="border p-3 rounded-lg w-full mt-1 focus:ring-2 focus:ring-blue-400 outline-none"
+          />
+        </div>
+
+        {/* Save Button */}
         <div className="pt-4">
           <button
             type="submit"

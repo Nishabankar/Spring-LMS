@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import FAQCard from '../molecules/FAQCard';
-import HeadingText from '../molecules/HeadingText';
+// import FAQCard from '../molecules/FAQCard';
+// import HeadingText from '../molecules/HeadingText';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";   // ⭐ Add this
+import HeadingText from '../component/molecules/HeadingText';
+import FAQCard from '../component/molecules/FAQCard';
 
 const FAQ = () => {
 
@@ -39,7 +41,7 @@ const FAQ = () => {
                 subheading="Still have questions? Contact our Team via support@skillbridge.com"
                 BtnText="See All FAQ’s"
                 isFAQ={true}
-                onClick={() => navigate("/faqs")} 
+                onClick={() => navigate("/faqs")}
             />
 
             <div className='card-container flex flex-col gap-5 w-full justify-center items-center lg:max-w-[60%]'>

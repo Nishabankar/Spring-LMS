@@ -8,12 +8,7 @@ import benifitRoutes from "./routes/benefitRoutes.js";
 import testimonialRoutes from "./routes/testimonialRoutes.js";
 import pricingRoutes from "./routes/pricingRoutes.js";
 import faqRoutes from "./routes/faqRoutes.js";
-
-
-
-
-
-
+import myCourseRoutes from "./routes/myCourseRoutes.js";
 
 // Intialize Express
 const app = express()
@@ -40,16 +35,8 @@ app.use( "/api/courses", courseRoutes );
 app.use( "/api/benefits", benifitRoutes );
 app.use( "/api/testimonials", testimonialRoutes );
 app.use( "/api/pricing", pricingRoutes );
-app.use("/api/faqs", faqRoutes);
-
-
-
-
-
-
-
-
-
+app.use( "/api/faqs", faqRoutes );
+app.use("/api/mycourses", myCourseRoutes);
 
 // Port
 const PORT = process.env.PORT || 5000

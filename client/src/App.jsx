@@ -12,12 +12,15 @@ import Footer from './component/template/Footer'
 import MainNavbar from './component/molecules/MainNavbar'
 import TopNavbar from './component/molecules/TopNavbar'
 import Contact from './pages/Contact'
-
 import Dashboard from './pages/Dashboard'
 import StudentDashboard from "./pages/StudentDashboard"
 
-// ✅ Import PrivateRoute
+
+// ✅ PrivateRoute
 import PrivateRoute from "./PrivateRoute"
+import BenefitsPage from './pages/BenefitsPage'
+import TestimonialsPage from './pages/Testimonialspage'
+import FAQPage from './pages/Faqpage'
 
 function App () {
   return (
@@ -37,7 +40,14 @@ function App () {
         <Route path="/signup" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
 
-        {/* ✅ Protected Routes */}
+        {/* ⭐ NEW: Benefits full page */}
+        <Route path="/benefits" element={<BenefitsPage />} />
+        <Route path="/testimonials" element={<TestimonialsPage />} />
+        <Route path="/faqs" element={<FAQPage />} />
+
+
+
+        {/* Protected Routes */}
         <Route
           path="/dashboard"
           element={
